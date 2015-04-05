@@ -6,7 +6,7 @@ public class Main {
 	private static  ArrayList<Song> songList = new ArrayList<Song>();
 	public static void main(String args[]) {	
 		songList = getList();
-		
+		Scanner input = new Scanner(System.in);
 		int currentSong = 0;
 		boolean keepPlaying = true;
 
@@ -25,11 +25,32 @@ public class Main {
 			case 2:
 				System.out.println(songList.get(currentSong).toString());
 				break;
-			case 3:
+			case 3: 
+				System.out.println("Enter the title of the new song ");
+				String newSongTitle = input.nextLine();
+				
+				System.out.println("Enter the Artist of the new song");
+				String newSongArtist = input.nextLine();
+				
+				System.out.println("Enter the album where song comes from");
+				String newSongAlbum = input.nextLine();
+				
+				System.out.println("Enter the rating of the new song ");
+				int newSongrRating = input.nextInt();
+				Song newSong = new Song(newSongTitle, newSongArtist, newSongAlbum,newSongrRating);
+				songList.add(newSong);
+				//Will also have to be added into the heap 
 				break;
 			case 4:
+				currentSong++;
+				System.out.println("Now playing " + songList.get(currentSong));
 				break;
 			case 5:
+				System.out.println("Now playing " + songList.get(currentSong));
+				songList.get(currentSong).getRating();
+				System.out.println("Please enter the new rating of the song");
+				int r = input.nextInt();
+				songList.get(currentSong).setRating(r);
 				break;
 			case 6:
 				System.out.println("Thank you for your patronage");

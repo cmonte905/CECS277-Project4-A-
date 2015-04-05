@@ -15,25 +15,56 @@ public class Song implements Comparable {
 		this.rating = r;
 	}
 
-	
+	public void getRating() {
+		System.out.println("Current rating: " + this.rating);
+	}
+
+	public void setRating(int r) {
+		this.rating = r;
+	}
 
 	public ArrayList<Song> getList() {
 		return songList;
 	}
 
 	public String toString() {
-		return this.title + " "+ this.artist + " " + this.album + " " + this.rating;
+		return this.title + " " + this.artist + " " + this.album + " "
+				+ this.rating;
 	}
 
 	public int compareTo(Object other) {
-		
 		Song otherSong = (Song) other;
-		if(other instanceof Song){
-			return  0;
+		if (this.rating == otherSong.rating) {
+			boolean check = true;
+			int i =0;
+			while(check){
+				if(i> otherSong.title.length() || i > this.title.length()){
+					if(this.title.length() > otherSong.title.length()){
+						i = otherSong.title.length()-1;
+					}
+					else{
+						i = this.title.length()-1;
+					}
+					
+				}
+				if (this.title.charAt(i) > otherSong.title.charAt(i)){
+					return 1;
+				}
+				else if(this.title.charAt(i) < otherSong.title.charAt(i)){
+					return -1;
+				}
+				else{
+					i++;
+				}
+			}
+			
+			return 0;
+		} else if (this.rating > otherSong.rating) {
+			return 1;
+		} else {
+			return -1;
 		}
-		
-		return 0;
-		
+
 	}
 
 }
