@@ -9,10 +9,8 @@ public class Song implements Comparable {
 	private int rating;
 
 	public Song(String t, String a, String alb, int r) {
-		this.title = t;
-		this.artist = a;
-		this.album = alb;
-		this.rating = r;
+		this.title = t;	this.artist = a;
+		this.album = alb; this.rating = r;
 	}
 
 	public void getRating() {
@@ -38,14 +36,14 @@ public class Song implements Comparable {
 			boolean check = true;
 			int i =0;
 			while(check){
+				//Bounds checking for index
 				if(i> otherSong.title.length() || i > this.title.length()){
 					if(this.title.length() > otherSong.title.length()){
 						i = otherSong.title.length()-1;
 					}
 					else{
 						i = this.title.length()-1;
-					}
-					
+					}					
 				}
 				if (this.title.charAt(i) > otherSong.title.charAt(i)){
 					return 1;

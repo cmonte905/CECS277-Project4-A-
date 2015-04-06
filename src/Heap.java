@@ -40,36 +40,41 @@ public class Heap<T> {
 	public void addNode(T t) {
 		heap.add(null);
 		int index = heap.size() - 1;
-		while (index > 0 && getNodeAt(getPLoc(index)).compareTo() > t.compareTo()) {
+		/*
+		 * while(index > 0 && getNodeAt(getPLoc(index)).getData()>n.getData()){
+			heap.set(index, getNodeAt(getPLoc(index)));
+			index = getPLoc(index);
+}
+		 */
+		while (index > 0 && (getNodeAt(getPLoc(index)).getData() > t.getData())) {
 			heap.set(index, getNodeAt(getPLoc(index)));
 			index = getPLoc(index);
 		}
-		heap.set(index, n); 
+		heap.set(index, t); 
 	}
 
 	public T removeMin() {
-		Node min = heap.get(0);
+		T min = heap.get(0);
 		int index = heap.size() - 1;
-		Node last = heap.remove(index);
+		T last = heap.remove(index);
 		if (index > 0) {
 			heap.set(0, last);
-			Node root = heap.get(0);
+			T root = heap.get(0);
 			int end = heap.size() - 1;
 			index = 0;
 			boolean done = false;
 			while (!done) {
 				if (getLCLoc(index) <= end) {// left exists
-					Node child = getNodeAt(getLCLoc(index));
+					T child = getNodeAt(getLCLoc(index));
 					int childLoc = getLCLoc(index);
 					if (getRCLoc(index) <= end) {// rt exists
-						if (getNodeAt(getRCLoc(index)).getData() < child
-								.getData()) {
+						if (getNodeAt(getRCLoc(index)).getData() < child.getData()) {
 							child = getNodeAt(getRCLoc(index));
 							childLoc = getRCLoc(index);
 						}
 					}
 					if (child.getData() < root.getData()) {
-						heap.set(index, child);
+						 m,heap.set(index, child);
 						index = childLoc;
 					} else {
 						done = true;
@@ -89,19 +94,20 @@ public class Heap<T> {
 		}
 		System.out.println();
 	}
-	public class Node {
-		private int data;
+	
+	public class Node <T> {
+		private T data;
 
-		public Node(int d) {
-			data = d;
+		public Node(T t) {
+			data = t;
 		}
 
-		public int getData() {
+		public T getData() {
 			return data;
 		}
 
-		public void setData(int d) {
-			data = d;
+		public void setData(T t) {
+			data = t;
 		}
 	}
 

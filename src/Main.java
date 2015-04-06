@@ -6,10 +6,16 @@ public class Main {
 	private static  ArrayList<Song> songList = new ArrayList<Song>();
 	public static void main(String args[]) {	
 		songList = getList();
+		Heap songHeap = new Heap();
+		for(int i = 0; i > songList.size();i++){
+			songHeap.addNode(songList.get(i));	
+		}
+		
 		Scanner input = new Scanner(System.in);
 		int currentSong = 0;
 		boolean keepPlaying = true;
-
+		
+		
 		while (keepPlaying) {
 			System.out
 					.println("Choose an option:\n1: Display all songs\n2: Display current song\n3: "
